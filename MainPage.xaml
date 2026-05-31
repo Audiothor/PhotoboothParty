@@ -9,11 +9,12 @@
     </ContentPage.ToolbarItems>
 
     <Grid>
-        <Grid HorizontalOptions="Center" RowDefinitions="Auto, Auto, Auto" VerticalOptions="Center">
+        <Grid HorizontalOptions="Center" RowDefinitions="Auto, Auto" VerticalOptions="Center">
             <Label x:Name="lblLine1" FontAttributes="Bold" Grid.Row="0" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
             <Label x:Name="lblLine2" Grid.Row="1" HorizontalOptions="Center" Margin="0,20,0,0" Opacity="0.8" HorizontalTextAlignment="Center" />
-            <!-- Ajout de la version juste en dessous pour être certain qu'elle ne soit pas cachée par la barre Android -->
-            <Label x:Name="lblVersion" Grid.Row="2" HorizontalOptions="Center" Margin="0,80,0,0" TextColor="Gray" FontSize="14" Opacity="0.4" />
         </Grid>
+        
+        <!-- Version au tout bas de l'ecran avec une marge securitaire pour la barre de navigation Android -->
+        <Label x:Name="lblVersion" HorizontalOptions="Center" VerticalOptions="End" Margin="0,0,0,40" TextColor="Gray" FontSize="14" Opacity="0.5" />
     </Grid>
 </ContentPage>

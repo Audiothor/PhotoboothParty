@@ -165,6 +165,11 @@ public partial class CapturePage : ContentPage
                 }
                 ms.Position = 0;
 
+#if ANDROID
+                // IMPORTANT: Force the Android system to index the new image so it shows up in the Gallery app immediately
+                Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] { filePath }, null, null);
+#endif
+
                 imgPreview.Source = ImageSource.FromStream(() => ms);
             }
             catch (Exception ex)

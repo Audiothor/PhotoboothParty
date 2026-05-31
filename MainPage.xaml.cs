@@ -61,7 +61,7 @@ public partial class MainPage : ContentPage
         try { lblLine2.TextColor = Color.Parse(Microsoft.Maui.Storage.Preferences.Default.Get("title_line2_color", "White")); } catch { lblLine2.TextColor = Colors.White; }
         lblLine2.FontSize = Microsoft.Maui.Storage.Preferences.Default.Get("title_line2_size", 18.0);
 
-        lblVersion.Text = $"v{AppInfo.Current.VersionString}";
+        lblVersion.Text = $"PhotoboothParty v{AppInfo.Current.VersionString}";
 
         DeviceDisplay.Current.KeepScreenOn = Microsoft.Maui.Storage.Preferences.Default.Get("keep_screen_on", true);
     }
