@@ -24,6 +24,7 @@ public partial class SettingsPage : ContentPage
         entryLine2Size.Text = Preferences.Default.Get("title_line2_size", 18.0).ToString();
 
         switchKeepScreenOn.IsToggled = Preferences.Default.Get("keep_screen_on", true);
+        switchPlaySound.IsToggled = Preferences.Default.Get("play_shutter_sound", true);
         
         bool useDefaultGallery = Preferences.Default.Get("use_default_gallery", true);
         switchUseDefaultGallery.IsToggled = useDefaultGallery;
@@ -96,6 +97,8 @@ public partial class SettingsPage : ContentPage
 
         Preferences.Default.Set("keep_screen_on", switchKeepScreenOn.IsToggled);
         DeviceDisplay.Current.KeepScreenOn = switchKeepScreenOn.IsToggled;
+        
+        Preferences.Default.Set("play_shutter_sound", switchPlaySound.IsToggled);
 
         Preferences.Default.Set("use_default_gallery", switchUseDefaultGallery.IsToggled);
         Preferences.Default.Set("custom_gallery_path", _tempCustomFolderPath);

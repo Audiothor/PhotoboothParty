@@ -117,6 +117,17 @@ public partial class CapturePage : ContentPage
         }
         lblCaptureCountdown.IsVisible = false;
 
+        bool playSound = Microsoft.Maui.Storage.Preferences.Default.Get("play_shutter_sound", true);
+        if (playSound)
+        {
+#if ANDROID
+            try {
+                var sound = new Android.Media.MediaActionSound();
+                sound.Play(Android.Media.MediaActionSoundType.ShutterClick);
+            } catch { }
+#endif
+        }
+
         var imageStream = await photoCamera.CaptureImage(CancellationToken.None);
         _isProcessingCapture = false;
 

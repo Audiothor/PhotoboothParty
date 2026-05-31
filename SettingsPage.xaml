@@ -55,6 +55,13 @@
                     <BoxView HeightRequest="1" Color="#333333" Margin="0,10" />
 
                     <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Bruit de l'appareil photo" TextColor="Silver" FontSize="15" FontAttributes="Bold" VerticalOptions="Center"/>
+                        <Switch x:Name="switchPlaySound" Grid.Column="1" OnColor="#007ACC" VerticalOptions="Center"/>
+                    </Grid>
+
+                    <BoxView HeightRequest="1" Color="#333333" Margin="0,10" />
+
+                    <Grid ColumnDefinitions="*,Auto">
                         <Label Text="Garder l'&#xE9;cran toujours allum&#xE9;" TextColor="Silver" FontSize="15" FontAttributes="Bold" VerticalOptions="Center"/>
                         <Switch x:Name="switchKeepScreenOn" Grid.Column="1" OnColor="#007ACC" VerticalOptions="Center"/>
                     </Grid>
