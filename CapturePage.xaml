@@ -26,5 +26,8 @@
                 </HorizontalStackLayout>
             </Border>
         </Grid>
+
+        <!-- Flash blanc -->
+        <BoxView x:Name="flashOverlay" BackgroundColor="White" Opacity="0" InputTransparent="True" />
     </Grid>
 </ContentPage>
