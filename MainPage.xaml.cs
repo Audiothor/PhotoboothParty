@@ -77,7 +77,10 @@ public partial class MainPage : ContentPage
         try { lblLine3.TextColor = Color.Parse(Microsoft.Maui.Storage.Preferences.Default.Get("title_line3_color", "White")); } catch { lblLine3.TextColor = Colors.White; }
         lblLine3.FontSize = Microsoft.Maui.Storage.Preferences.Default.Get("title_line3_size", 16.0);
 
-        lblVersion.Text = $"PhotoboothParty v{AppInfo.Current.VersionString}";
+        lblLine4.Text = Microsoft.Maui.Storage.Preferences.Default.Get("title_line4_text", "PhotoboothParty v" + AppInfo.Current.VersionString);
+        lblLine4.IsVisible = !string.IsNullOrWhiteSpace(lblLine4.Text);
+        try { lblLine4.TextColor = Color.Parse(Microsoft.Maui.Storage.Preferences.Default.Get("title_line4_color", "Gray")); } catch { lblLine4.TextColor = Colors.Gray; }
+        lblLine4.FontSize = Microsoft.Maui.Storage.Preferences.Default.Get("title_line4_size", 14.0);
 
         DeviceDisplay.Current.KeepScreenOn = Microsoft.Maui.Storage.Preferences.Default.Get("keep_screen_on", true);
     }

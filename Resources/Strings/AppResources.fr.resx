@@ -46,4 +46,7 @@
   <data name="SettingsSelectImage" xml:space="preserve"><value>Choisir une image</value></data>
   <data name="SettingsDeleteImage" xml:space="preserve"><value>Supprimer</value></data>
   <data name="SettingsNoImageSelected" xml:space="preserve"><value>Aucune image sélectionnée</value></data>
+  <data name="SettingsLine4" xml:space="preserve"><value>Ligne 4</value></data>
+  <data name="SettingsLine4ColorLabel" xml:space="preserve"><value>Couleur de la ligne 4</value></data>
+  <data name="SettingsLine4SizeLabel" xml:space="preserve"><value>Taille de la ligne 4</value></data>
 </root>

@@ -26,12 +26,15 @@ public partial class SettingsPage : ContentPage
     private string _line1Color = "#C0C0C0";
     private string _line2Color = "#FFFFFF";
     private string _line3Color = "#FFFFFF";
+    private string _line4Color = "#808080";
     private string _flashMode = "Auto";
 
     public SettingsPage()
     {
         InitializeComponent();
         
+        lblAppVersionHeader.Text = $"PhotoboothParty v{AppInfo.Current.VersionString}";
+
         entryCaptureTimer.Text = Preferences.Default.Get("capture_timer", 10).ToString();
         entryPreviewDuration.Text = Preferences.Default.Get("preview_duration", 5).ToString();
         entryInactivityTimeout.Text = Preferences.Default.Get("inactivity_timeout", 20).ToString();
@@ -53,6 +56,12 @@ public partial class SettingsPage : ContentPage
         double size3 = Preferences.Default.Get("title_line3_size", 16.0);
         sliderLine3Size.Value = size3;
         lblLine3Size.Text = $"{(int)size3} px";
+
+        entryLine4Text.Text = Preferences.Default.Get("title_line4_text", "PhotoboothParty v" + AppInfo.Current.VersionString);
+        _line4Color = Preferences.Default.Get("title_line4_color", "Gray");
+        double size4 = Preferences.Default.Get("title_line4_size", 14.0);
+        sliderLine4Size.Value = size4;
+        lblLine4Size.Text = $"{(int)size4} px";
 
         InitializeColorPickers();
 
@@ -88,6 +97,7 @@ public partial class SettingsPage : ContentPage
         PopulateColorStack(stackLine1Colors, 1, _line1Color);
         PopulateColorStack(stackLine2Colors, 2, _line2Color);
         PopulateColorStack(stackLine3Colors, 3, _line3Color);
+        PopulateColorStack(stackLine4Colors, 4, _line4Color);
     }
 
     private void PopulateColorStack(HorizontalStackLayout stack, int lineIndex, string currentColor)
@@ -146,6 +156,7 @@ public partial class SettingsPage : ContentPage
         if (lineIndex == 1) _line1Color = selectedHex;
         else if (lineIndex == 2) _line2Color = selectedHex;
         else if (lineIndex == 3) _line3Color = selectedHex;
+        else if (lineIndex == 4) _line4Color = selectedHex;
 
         PopulateColorStack(stack, lineIndex, selectedHex);
     }
@@ -166,6 +177,12 @@ public partial class SettingsPage : ContentPage
     {
         if (lblLine3Size != null)
             lblLine3Size.Text = $"{(int)e.NewValue} px";
+    }
+
+    private void OnLine4SizeChanged(object sender, ValueChangedEventArgs e)
+    {
+        if (lblLine4Size != null)
+            lblLine4Size.Text = $"{(int)e.NewValue} px";
     }
 
     private void OnFlashModeClicked(object sender, EventArgs e)
@@ -333,6 +350,10 @@ public partial class SettingsPage : ContentPage
         Preferences.Default.Set("title_line3_text", entryLine3Text.Text ?? "");
         Preferences.Default.Set("title_line3_color", _line3Color);
         Preferences.Default.Set("title_line3_size", sliderLine3Size.Value);
+
+        Preferences.Default.Set("title_line4_text", entryLine4Text.Text ?? "");
+        Preferences.Default.Set("title_line4_color", _line4Color);
+        Preferences.Default.Set("title_line4_size", sliderLine4Size.Value);
 
         Preferences.Default.Set("keep_screen_on", switchKeepScreenOn.IsToggled);
         DeviceDisplay.Current.KeepScreenOn = switchKeepScreenOn.IsToggled;
