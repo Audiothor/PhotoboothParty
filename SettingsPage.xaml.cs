@@ -25,6 +25,7 @@ public partial class SettingsPage : ContentPage
 
         switchKeepScreenOn.IsToggled = Preferences.Default.Get("keep_screen_on", true);
         switchPlaySound.IsToggled = Preferences.Default.Get("play_shutter_sound", true);
+        switchPlayFlash.IsToggled = Preferences.Default.Get("play_flash_effect", true);
         
         bool useDefaultGallery = Preferences.Default.Get("use_default_gallery", true);
         switchUseDefaultGallery.IsToggled = useDefaultGallery;
@@ -99,6 +100,7 @@ public partial class SettingsPage : ContentPage
         DeviceDisplay.Current.KeepScreenOn = switchKeepScreenOn.IsToggled;
         
         Preferences.Default.Set("play_shutter_sound", switchPlaySound.IsToggled);
+        Preferences.Default.Set("play_flash_effect", switchPlayFlash.IsToggled);
 
         Preferences.Default.Set("use_default_gallery", switchUseDefaultGallery.IsToggled);
         Preferences.Default.Set("custom_gallery_path", _tempCustomFolderPath);

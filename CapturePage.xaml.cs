@@ -118,7 +118,11 @@ public partial class CapturePage : ContentPage
         lblCaptureCountdown.IsVisible = false;
         
         // DÃ©clenchement du flash (blanc immÃ©diat)
-        flashOverlay.Opacity = 1;
+        bool playFlash = Microsoft.Maui.Storage.Preferences.Default.Get("play_flash_effect", true);
+        if (playFlash)
+        {
+            flashOverlay.Opacity = 1;
+        }
 
         bool playSound = Microsoft.Maui.Storage.Preferences.Default.Get("play_shutter_sound", true);
         if (playSound)
@@ -197,7 +201,10 @@ public partial class CapturePage : ContentPage
             gridPreview.IsVisible = true;
             
             // Fait disparaÃ®tre le flash en douceur (fade out)
-            flashOverlay.FadeTo(0, 500, Easing.CubicOut);
+            if (playFlash)
+            {
+                flashOverlay.FadeTo(0, 500, Easing.CubicOut);
+            }
 
             await RunPreviewPersistenceTimer();
         }
