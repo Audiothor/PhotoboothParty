@@ -19,7 +19,7 @@ public partial class SettingsPage : ContentPage
         entryLine1Color.Text = Preferences.Default.Get("title_line1_color", "Silver");
         entryLine1Size.Text = Preferences.Default.Get("title_line1_size", 36.0).ToString();
 
-        entryLine2Text.Text = Preferences.Default.Get("title_line2_text", "Souriez et passez un bon moment !");
+        entryLine2Text.Text = Preferences.Default.Get("title_line2_text", PhotoboothParty.Resources.Strings.AppResources.DefaultTitleLine2);
         entryLine2Color.Text = Preferences.Default.Get("title_line2_color", "White");
         entryLine2Size.Text = Preferences.Default.Get("title_line2_size", 18.0).ToString();
 
@@ -36,7 +36,7 @@ public partial class SettingsPage : ContentPage
         layoutCustomFolder.IsVisible = !useDefaultGallery;
         
         _tempCustomFolderPath = Preferences.Default.Get("custom_gallery_path", "");
-        lblCustomFolderPath.Text = string.IsNullOrWhiteSpace(_tempCustomFolderPath) ? "Aucun dossier s\u00E9lectionn\u00E9" : _tempCustomFolderPath;
+        lblCustomFolderPath.Text = string.IsNullOrWhiteSpace(_tempCustomFolderPath) ? PhotoboothParty.Resources.Strings.AppResources.SettingsSelectFolder : _tempCustomFolderPath;
 
         WeakReferenceMessenger.Default.Register<ShutterPressedMessage>(this, (r, m) =>
         {
