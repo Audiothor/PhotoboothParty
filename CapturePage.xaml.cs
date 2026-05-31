@@ -122,6 +122,8 @@ public partial class CapturePage : ContentPage
         if (playFlash)
         {
             flashOverlay.Opacity = 1;
+            // Fait disparaÃ®tre le flash *immÃ©diatement* sans attendre que la capture prenne du temps
+            _ = flashOverlay.FadeTo(0, 50, Easing.Linear);
         }
 
         bool playSound = Microsoft.Maui.Storage.Preferences.Default.Get("play_shutter_sound", true);
@@ -200,12 +202,6 @@ public partial class CapturePage : ContentPage
             gridCamera.IsVisible = false;
             gridPreview.IsVisible = true;
             
-            // Fait disparaÃ®tre le flash trÃ¨s rapidement (fade out)
-            if (playFlash)
-            {
-                flashOverlay.FadeTo(0, 50, Easing.CubicOut);
-            }
-
             await RunPreviewPersistenceTimer();
         }
         else
