@@ -1,0 +1,186 @@
+using CommunityToolkit.Mvvm.Messaging;
+using CommunityToolkit.Maui.Core;
+using System.Threading;
+
+namespace PhotoboothParty;
+
+public partial class CapturePage : ContentPage
+{
+    private CancellationTokenSource? _inactivityTokenSource;
+    private bool _isProcessingCapture = false;
+    private bool _isInPreviewMode = false;
+
+    public CapturePage()
+    {
+        InitializeComponent();
+
+        photoCamera.HandlerChanged += async (s, e) =>
+        {
+            await SetupFrontCameraAsync();
+        };
+
+        WeakReferenceMessenger.Default.Register<ShutterPressedMessage>(this, (r, m) =>
+        {
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                await ProcessRemoteInput();
+            });
+        });
+    }
+
+    private async Task SetupFrontCameraAsync()
+    {
+        if (photoCamera.Handler?.MauiContext != null)
+        {
+            try
+            {
+                var cameraProvider = photoCamera.Handler.MauiContext.Services.GetService<ICameraProvider>();
+                if (cameraProvider != null)
+                {
+                    if (cameraProvider.AvailableCameras == null || cameraProvider.AvailableCameras.Count == 0)
+                        await cameraProvider.RefreshAvailableCameras(CancellationToken.None);
+
+                    var frontCam = cameraProvider.AvailableCameras?.FirstOrDefault(c => c.Position == CameraPosition.Front);
+                    var targetCam = frontCam ?? cameraProvider.AvailableCameras?.FirstOrDefault();
+                    
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
+                        var rearCam = cameraProvider.AvailableCameras?.FirstOrDefault(c => c.Position == CameraPosition.Rear);
+                        
+                        // Si la camÃ©ra native se fige sur la camÃ©ra arriÃ¨re par dÃ©faut, forcer une bascule
+                        if (photoCamera.SelectedCamera != null && photoCamera.SelectedCamera.Position == CameraPosition.Front)
+                        {
+                            // dÃ©jÃ  bon, on ne fait rien
+                        }
+                        else
+                        {
+                            // SÃ©lectionner la camÃ©ra frontale
+                            photoCamera.SelectedCamera = targetCam;
+                        }
+
+                        // Petite pause pour s'assurer que le composant natif a bien reÃ§u l'instruction
+                        await Task.Delay(150);
+                        photoCamera.SelectedCamera = targetCam;
+                    });
+                }
+            }
+            catch { }
+        }
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        StartInactivityCountdown();
+        await Task.Delay(100); // Laisse le temps au Layout de s'afficher
+        await SetupFrontCameraAsync();
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        CancelInactivityCountdown();
+        WeakReferenceMessenger.Default.Unregister<ShutterPressedMessage>(this);
+    }
+
+    private async Task ProcessRemoteInput()
+    {
+        if (_isProcessingCapture) return; 
+
+        CancelInactivityCountdown(); 
+
+        if (_isInPreviewMode)
+        {
+            // RÃˆGLE : Nouveau clic pendant l'aperÃ§u de 5s = interruption et nouvelle capture immÃ©diate
+            _isInPreviewMode = false;
+            gridPreview.IsVisible = false;
+            gridCamera.IsVisible = true;
+            await Task.Delay(100); // Laisse le temps Ã  la camÃ©ra de redevenir visible
+            await SetupFrontCameraAsync();
+        }
+
+        await ExecuteCaptureSequence();
+    }
+
+    private async Task ExecuteCaptureSequence()
+    {
+        _isProcessingCapture = true;
+        lblCaptureCountdown.IsVisible = true;
+
+        int captureTimer = Microsoft.Maui.Storage.Preferences.Default.Get("capture_timer", 10);
+
+        for (int i = captureTimer; i > 0; i--)
+        {
+            lblCaptureCountdown.Text = i.ToString();
+            await Task.Delay(1000);
+        }
+        lblCaptureCountdown.IsVisible = false;
+
+        var imageStream = await photoCamera.CaptureImage(CancellationToken.None);
+        _isProcessingCapture = false;
+
+        if (imageStream != null)
+        {
+            imgPreview.Source = ImageSource.FromStream(() => imageStream);
+            gridCamera.IsVisible = false;
+            gridPreview.IsVisible = true;
+
+            await RunPreviewPersistenceTimer();
+        }
+        else
+        {
+            StartInactivityCountdown();
+        }
+    }
+
+    private async Task RunPreviewPersistenceTimer()
+    {
+        _isInPreviewMode = true;
+
+        int previewDuration = Microsoft.Maui.Storage.Preferences.Default.Get("preview_duration", 5);
+
+        for (int i = previewDuration; i > 0; i--)
+        {
+            if (!_isInPreviewMode) return;
+            lblPreviewCountdown.Text = $"{i}s";
+            await Task.Delay(1000);
+        }
+
+        if (_isInPreviewMode)
+        {
+            await Navigation.PopAsync();
+        }
+    }
+
+    private void StartInactivityCountdown()
+    {
+        CancelInactivityCountdown();
+        _inactivityTokenSource = new CancellationTokenSource();
+        var token = _inactivityTokenSource.Token;
+
+        int inactivityTimeout = Microsoft.Maui.Storage.Preferences.Default.Get("inactivity_timeout", 20);
+
+        Task.Run(async () =>
+        {
+            try
+            {
+                await Task.Delay(inactivityTimeout * 1000, token);
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    if (Shell.Current.CurrentPage is CapturePage)
+                    {
+                        await Navigation.PopAsync();
+                    }
+                });
+            }
+            catch (TaskCanceledException) { }
+        });
+    }
+
+    private void CancelInactivityCountdown()
+    {
+        _inactivityTokenSource?.Cancel();
+        _inactivityTokenSource?.Dispose();
+        _inactivityTokenSource = null;
+    }
+}

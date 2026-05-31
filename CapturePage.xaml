@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage BackgroundColor="Black" 
+             NavigationPage.HasNavigationBar="False" 
+             Shell.NavBarIsVisible="False"
+             x:Class="PhotoboothParty.CapturePage" 
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Grid>
+        <Grid IsVisible="True" x:Name="gridCamera">
+            <toolkit:CameraView x:Name="photoCamera" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Scale="1.34" />
+            <Label FontAttributes="Bold" FontSize="22" HorizontalOptions="Center" Margin="0,40,0,0" Text="Installez-vous et cliquez pour flasher !" TextColor="White" VerticalOptions="Start"/>
+            <Label FontAttributes="Bold" FontSize="180" HorizontalOptions="Center" IsVisible="False" Text="3" TextColor="White" VerticalOptions="Center" x:Name="lblCaptureCountdown"/>
+        </Grid>
+
+        <Grid IsVisible="False" x:Name="gridPreview">
+            <Image Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="imgPreview"/>
+            <Border BackgroundColor="#A0000000" HorizontalOptions="End" Margin="40" Padding="20,12" StrokeThickness="0" VerticalOptions="End">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <HorizontalStackLayout Spacing="8">
+                    <Label FontSize="16" Text="Retour au menu dans" TextColor="White" VerticalOptions="Center"/>
+                    <Label FontAttributes="Bold" FontSize="20" Text="5s" TextColor="Silver" VerticalOptions="Center" x:Name="lblPreviewCountdown"/>
+                </HorizontalStackLayout>
+            </Border>
+        </Grid>
+    </Grid>
+</ContentPage>
