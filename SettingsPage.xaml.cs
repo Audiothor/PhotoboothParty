@@ -5,6 +5,8 @@ namespace PhotoboothParty;
 
 public partial class SettingsPage : ContentPage
 {
+    private string _tempCustomFolderPath = "";
+
     public SettingsPage()
     {
         InitializeComponent();
@@ -22,6 +24,13 @@ public partial class SettingsPage : ContentPage
         entryLine2Size.Text = Preferences.Default.Get("title_line2_size", 18.0).ToString();
 
         switchKeepScreenOn.IsToggled = Preferences.Default.Get("keep_screen_on", true);
+        
+        bool useDefaultGallery = Preferences.Default.Get("use_default_gallery", true);
+        switchUseDefaultGallery.IsToggled = useDefaultGallery;
+        layoutCustomFolder.IsVisible = !useDefaultGallery;
+        
+        _tempCustomFolderPath = Preferences.Default.Get("custom_gallery_path", "");
+        lblCustomFolderPath.Text = string.IsNullOrWhiteSpace(_tempCustomFolderPath) ? "Aucun dossier s\u00E9lectionn\u00E9" : _tempCustomFolderPath;
 
         WeakReferenceMessenger.Default.Register<ShutterPressedMessage>(this, (r, m) =>
         {
@@ -37,6 +46,33 @@ public partial class SettingsPage : ContentPage
     {
         base.OnDisappearing();
         WeakReferenceMessenger.Default.Unregister<ShutterPressedMessage>(this);
+    }
+
+    private void OnDefaultGalleryToggled(object sender, ToggledEventArgs e)
+    {
+        layoutCustomFolder.IsVisible = !e.Value;
+    }
+
+    private async void OnSelectFolderClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            var result = await CommunityToolkit.Maui.Storage.FolderPicker.Default.PickAsync(default);
+            if (result.IsSuccessful)
+            {
+                _tempCustomFolderPath = result.Folder.Path;
+                lblCustomFolderPath.Text = _tempCustomFolderPath;
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Erreur", $"Impossible de s\u00E9lectionner le dossier : {ex.Message}", "OK");
+        }
+    }
+
+    private async void OnCancelClicked(object sender, EventArgs e)
+    {
+        await Navigation.PopAsync();
     }
 
     private async void OnSaveClicked(object sender, EventArgs e)
@@ -60,6 +96,9 @@ public partial class SettingsPage : ContentPage
 
         Preferences.Default.Set("keep_screen_on", switchKeepScreenOn.IsToggled);
         DeviceDisplay.Current.KeepScreenOn = switchKeepScreenOn.IsToggled;
+
+        Preferences.Default.Set("use_default_gallery", switchUseDefaultGallery.IsToggled);
+        Preferences.Default.Set("custom_gallery_path", _tempCustomFolderPath);
 
         await Navigation.PopAsync();
     }

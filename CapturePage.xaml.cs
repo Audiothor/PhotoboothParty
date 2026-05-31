@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.Messaging;
 using CommunityToolkit.Maui.Core;
 using System.Threading;
+using System.IO;
 
 namespace PhotoboothParty;
 
@@ -121,7 +122,58 @@ public partial class CapturePage : ContentPage
 
         if (imageStream != null)
         {
-            imgPreview.Source = ImageSource.FromStream(() => imageStream);
+            try
+            {
+                var ms = new MemoryStream();
+                await imageStream.CopyToAsync(ms);
+                ms.Position = 0;
+
+                bool useDefaultGallery = Microsoft.Maui.Storage.Preferences.Default.Get("use_default_gallery", true);
+                string customPath = Microsoft.Maui.Storage.Preferences.Default.Get("custom_gallery_path", "");
+
+                string targetFolder = "";
+                if (useDefaultGallery || string.IsNullOrWhiteSpace(customPath))
+                {
+#if ANDROID
+                    var mediaDirs = Android.App.Application.Context.GetExternalMediaDirs();
+                    if (mediaDirs != null && mediaDirs.Length > 0)
+                    {
+                        targetFolder = Path.Combine(mediaDirs[0].AbsolutePath, "PhotoboothParty");
+                    }
+                    else
+                    {
+                        targetFolder = Path.Combine(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures).AbsolutePath, "PhotoboothParty");
+                    }
+#else
+                    targetFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "PhotoboothParty");
+#endif
+                }
+                else
+                {
+                    targetFolder = customPath;
+                }
+
+                if (!Directory.Exists(targetFolder))
+                    Directory.CreateDirectory(targetFolder);
+
+                string filename = $"Photo_{DateTime.Now:yyyyMMdd_HHmmss}.jpg";
+                string filePath = Path.Combine(targetFolder, filename);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+                {
+                    await ms.CopyToAsync(fileStream);
+                }
+                ms.Position = 0;
+
+                imgPreview.Source = ImageSource.FromStream(() => ms);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error saving photo: {ex.Message}");
+                // Fallback direct preview sans sauvegarde si erreur de permission
+                imgPreview.Source = ImageSource.FromStream(() => imageStream);
+            }
+
             gridCamera.IsVisible = false;
             gridPreview.IsVisible = true;
 
