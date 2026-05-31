@@ -14,12 +14,12 @@
             <Label x:Name="lblLine3" Grid.Row="2" HorizontalOptions="Center" Margin="0,15,0,0" Opacity="0.8" HorizontalTextAlignment="Center" />
         </Grid>
         
-        <!-- Bouton Paramètres flottant en haut à droite avec marge de sécurité pour la barre d'état -->
+        <!-- Bouton Paramètres flottant le plus en haut à droite possible -->
         <ImageButton Source="settings_gear.png" 
                      Clicked="OnSettingsClicked" 
                      HorizontalOptions="End" 
                      VerticalOptions="Start" 
-                     Margin="0,30,20,0" 
+                     Margin="0,5,5,0" 
                      WidthRequest="44" 
                      HeightRequest="44" 
                      BackgroundColor="Transparent"
