@@ -34,6 +34,15 @@
                         <Entry x:Name="entryLine2Color" TextColor="White" BackgroundColor="#2D2D2D" Placeholder="Couleur (ex: White)" Margin="0,0,5,0" HeightRequest="45"/>
                         <Entry x:Name="entryLine2Size" Keyboard="Numeric" TextColor="White" BackgroundColor="#2D2D2D" Placeholder="Taille (ex: 18)" Grid.Column="1" Margin="5,0,0,0" HeightRequest="45"/>
                     </Grid>
+
+                    <BoxView HeightRequest="1" Color="#333333" Margin="0,10" />
+
+                    <Label Text="Ligne 3" TextColor="Silver" FontSize="16" FontAttributes="Bold" />
+                    <Entry x:Name="entryLine3Text" TextColor="White" BackgroundColor="#2D2D2D" Placeholder="Texte" HeightRequest="45"/>
+                    <Grid ColumnDefinitions="*,*">
+                        <Entry x:Name="entryLine3Color" TextColor="White" BackgroundColor="#2D2D2D" Placeholder="Couleur" Margin="0,0,5,0" HeightRequest="45"/>
+                        <Entry x:Name="entryLine3Size" Keyboard="Numeric" TextColor="White" BackgroundColor="#2D2D2D" Placeholder="Taille" Grid.Column="1" Margin="5,0,0,0" HeightRequest="45"/>
+                    </Grid>
                 </VerticalStackLayout>
             </Frame>
 

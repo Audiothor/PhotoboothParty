@@ -57,9 +57,14 @@ public partial class MainPage : ContentPage
         try { lblLine1.TextColor = Color.Parse(Microsoft.Maui.Storage.Preferences.Default.Get("title_line1_color", "Silver")); } catch { lblLine1.TextColor = Colors.Silver; }
         lblLine1.FontSize = Microsoft.Maui.Storage.Preferences.Default.Get("title_line1_size", 36.0);
 
-        lblLine2.Text = Microsoft.Maui.Storage.Preferences.Default.Get("title_line2_text", "Appuyez sur la t\u00E9l\u00E9commande pour commencer");
+        lblLine2.Text = Microsoft.Maui.Storage.Preferences.Default.Get("title_line2_text", "Souriez et passez un bon moment !");
         try { lblLine2.TextColor = Color.Parse(Microsoft.Maui.Storage.Preferences.Default.Get("title_line2_color", "White")); } catch { lblLine2.TextColor = Colors.White; }
         lblLine2.FontSize = Microsoft.Maui.Storage.Preferences.Default.Get("title_line2_size", 18.0);
+
+        lblLine3.Text = Microsoft.Maui.Storage.Preferences.Default.Get("title_line3_text", "");
+        lblLine3.IsVisible = !string.IsNullOrWhiteSpace(lblLine3.Text);
+        try { lblLine3.TextColor = Color.Parse(Microsoft.Maui.Storage.Preferences.Default.Get("title_line3_color", "White")); } catch { lblLine3.TextColor = Colors.White; }
+        lblLine3.FontSize = Microsoft.Maui.Storage.Preferences.Default.Get("title_line3_size", 16.0);
 
         lblVersion.Text = $"PhotoboothParty v{AppInfo.Current.VersionString}";
 
