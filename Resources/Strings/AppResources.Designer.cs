@@ -56,5 +56,12 @@ namespace PhotoboothParty.Resources.Strings
         public static string NewPhotoIn => ResourceManager.GetString("NewPhotoIn", resourceCulture);
         public static string ErrorFolderNotFound => ResourceManager.GetString("ErrorFolderNotFound", resourceCulture);
         public static string ErrorCameraAccess => ResourceManager.GetString("ErrorCameraAccess", resourceCulture);
+        public static string SettingsHardwareFlash => ResourceManager.GetString("SettingsHardwareFlash", resourceCulture);
+        public static string SettingsLine1ColorLabel => ResourceManager.GetString("SettingsLine1ColorLabel", resourceCulture);
+        public static string SettingsLine2ColorLabel => ResourceManager.GetString("SettingsLine2ColorLabel", resourceCulture);
+        public static string SettingsLine3ColorLabel => ResourceManager.GetString("SettingsLine3ColorLabel", resourceCulture);
+        public static string SettingsLine1SizeLabel => ResourceManager.GetString("SettingsLine1SizeLabel", resourceCulture);
+        public static string SettingsLine2SizeLabel => ResourceManager.GetString("SettingsLine2SizeLabel", resourceCulture);
+        public static string SettingsLine3SizeLabel => ResourceManager.GetString("SettingsLine3SizeLabel", resourceCulture);
     }
 }
