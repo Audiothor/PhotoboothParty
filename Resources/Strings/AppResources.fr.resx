@@ -34,4 +34,11 @@
   <data name="NewPhotoIn" xml:space="preserve"><value>Nouvelle photo dans</value></data>
   <data name="ErrorFolderNotFound" xml:space="preserve"><value>Dossier cible introuvable</value></data>
   <data name="ErrorCameraAccess" xml:space="preserve"><value>Erreur lors de l'accès à la caméra</value></data>
+  <data name="SettingsHardwareFlash" xml:space="preserve"><value>Mode de Flash Matériel</value></data>
+  <data name="SettingsLine1ColorLabel" xml:space="preserve"><value>Couleur de la ligne 1</value></data>
+  <data name="SettingsLine2ColorLabel" xml:space="preserve"><value>Couleur de la ligne 2</value></data>
+  <data name="SettingsLine3ColorLabel" xml:space="preserve"><value>Couleur de la ligne 3</value></data>
+  <data name="SettingsLine1SizeLabel" xml:space="preserve"><value>Taille de la ligne 1</value></data>
+  <data name="SettingsLine2SizeLabel" xml:space="preserve"><value>Taille de la ligne 2</value></data>
+  <data name="SettingsLine3SizeLabel" xml:space="preserve"><value>Taille de la ligne 3</value></data>
 </root>

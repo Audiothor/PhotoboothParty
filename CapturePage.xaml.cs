@@ -137,6 +137,15 @@ public partial class CapturePage : ContentPage
 #endif
         }
 
+        // Configuration du flash matériel
+        string savedFlashMode = Microsoft.Maui.Storage.Preferences.Default.Get("camera_flash_mode", "Auto");
+        if (savedFlashMode == "Auto")
+            photoCamera.CameraFlashMode = CameraFlashMode.Auto;
+        else if (savedFlashMode == "On")
+            photoCamera.CameraFlashMode = CameraFlashMode.On;
+        else
+            photoCamera.CameraFlashMode = CameraFlashMode.Off;
+
         var imageStream = await photoCamera.CaptureImage(CancellationToken.None);
         _isProcessingCapture = false;
 
