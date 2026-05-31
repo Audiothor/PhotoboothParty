@@ -21,7 +21,7 @@
                     <RoundRectangle CornerRadius="12" />
                 </Border.StrokeShape>
                 <HorizontalStackLayout Spacing="8">
-                    <Label FontSize="16" Text="Retour au menu dans" TextColor="White" VerticalOptions="Center"/>
+                    <Label FontSize="16" Text="Nouvelle photo menu dans" TextColor="White" VerticalOptions="Center"/>
                     <Label FontAttributes="Bold" FontSize="20" Text="5s" TextColor="Silver" VerticalOptions="Center" x:Name="lblPreviewCountdown"/>
                 </HorizontalStackLayout>
             </Border>

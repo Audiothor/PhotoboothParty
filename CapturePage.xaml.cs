@@ -203,7 +203,7 @@ public partial class CapturePage : ContentPage
             // Fait disparaÃ®tre le flash trÃ¨s rapidement (fade out)
             if (playFlash)
             {
-                flashOverlay.FadeTo(0, 150, Easing.CubicOut);
+                flashOverlay.FadeTo(0, 50, Easing.CubicOut);
             }
 
             await RunPreviewPersistenceTimer();
