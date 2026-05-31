@@ -125,6 +125,18 @@
                     </Frame>
                 </VerticalStackLayout>
             </Frame>
+            <Frame BackgroundColor="#1E1E1E" CornerRadius="10" Padding="15" BorderColor="#333333" Margin="0,0,0,15">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="{x:Static strings:AppResources.SettingsBackgroundImage}" TextColor="Silver" FontSize="16" FontAttributes="Bold" />
+                    <Label Text="{x:Static strings:AppResources.SettingsBackgroundImageDesc}" TextColor="Gray" FontSize="13" />
+
+                    <Grid ColumnDefinitions="*, *" ColumnSpacing="15" Margin="0,5">
+                        <Button x:Name="btnSelectBgImage" Text="{x:Static strings:AppResources.SettingsSelectImage}" BackgroundColor="#007ACC" TextColor="White" Clicked="OnSelectBgImageClicked" CornerRadius="8" HeightRequest="45" />
+                        <Button x:Name="btnDeleteBgImage" Text="{x:Static strings:AppResources.SettingsDeleteImage}" BackgroundColor="#D9534F" TextColor="White" Grid.Column="1" Clicked="OnDeleteBgImageClicked" CornerRadius="8" HeightRequest="45" IsEnabled="False" />
+                    </Grid>
+                    <Label x:Name="lblBgImagePath" Text="{x:Static strings:AppResources.SettingsNoImageSelected}" TextColor="Gray" FontSize="12" LineBreakMode="MiddleTruncation" HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Frame>
 
             <Frame BackgroundColor="#1E1E1E" CornerRadius="10" Padding="15" BorderColor="#333333" Margin="0,0,0,15">
                 <VerticalStackLayout Spacing="10">

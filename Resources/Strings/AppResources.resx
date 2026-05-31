@@ -41,4 +41,9 @@
   <data name="SettingsLine1SizeLabel" xml:space="preserve"><value>Line 1 Size</value></data>
   <data name="SettingsLine2SizeLabel" xml:space="preserve"><value>Line 2 Size</value></data>
   <data name="SettingsLine3SizeLabel" xml:space="preserve"><value>Line 3 Size</value></data>
+  <data name="SettingsBackgroundImage" xml:space="preserve"><value>Background Image</value></data>
+  <data name="SettingsBackgroundImageDesc" xml:space="preserve"><value>Customize the home screen background with a photo.</value></data>
+  <data name="SettingsSelectImage" xml:space="preserve"><value>Choose an image</value></data>
+  <data name="SettingsDeleteImage" xml:space="preserve"><value>Delete</value></data>
+  <data name="SettingsNoImageSelected" xml:space="preserve"><value>No image selected</value></data>
 </root>

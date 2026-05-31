@@ -41,4 +41,9 @@
   <data name="SettingsLine1SizeLabel" xml:space="preserve"><value>Taille de la ligne 1</value></data>
   <data name="SettingsLine2SizeLabel" xml:space="preserve"><value>Taille de la ligne 2</value></data>
   <data name="SettingsLine3SizeLabel" xml:space="preserve"><value>Taille de la ligne 3</value></data>
+  <data name="SettingsBackgroundImage" xml:space="preserve"><value>Image de fond</value></data>
+  <data name="SettingsBackgroundImageDesc" xml:space="preserve"><value>Personnalisez le fond de la page d'accueil avec une photo.</value></data>
+  <data name="SettingsSelectImage" xml:space="preserve"><value>Choisir une image</value></data>
+  <data name="SettingsDeleteImage" xml:space="preserve"><value>Supprimer</value></data>
+  <data name="SettingsNoImageSelected" xml:space="preserve"><value>Aucune image sélectionnée</value></data>
 </root>

@@ -1,11 +1,13 @@
 using Microsoft.Maui.Storage;
 using CommunityToolkit.Mvvm.Messaging;
+using System.IO;
 
 namespace PhotoboothParty;
 
 public partial class SettingsPage : ContentPage
 {
     private string _tempCustomFolderPath = "";
+    private string _tempBgImagePath = "";
 
     private static readonly System.Collections.Generic.List<(string Hex, string Name)> ColorPresets = new()
     {
@@ -67,6 +69,9 @@ public partial class SettingsPage : ContentPage
         
         _tempCustomFolderPath = Preferences.Default.Get("custom_gallery_path", "");
         lblCustomFolderPath.Text = string.IsNullOrWhiteSpace(_tempCustomFolderPath) ? PhotoboothParty.Resources.Strings.AppResources.SettingsSelectFolder : _tempCustomFolderPath;
+
+        _tempBgImagePath = Preferences.Default.Get("background_image_path", "");
+        UpdateBgImageLabelAndButtons();
 
         WeakReferenceMessenger.Default.Register<ShutterPressedMessage>(this, (r, m) =>
         {
@@ -240,6 +245,67 @@ public partial class SettingsPage : ContentPage
         }
     }
 
+    private void UpdateBgImageLabelAndButtons()
+    {
+        if (string.IsNullOrWhiteSpace(_tempBgImagePath) || !File.Exists(_tempBgImagePath))
+        {
+            lblBgImagePath.Text = PhotoboothParty.Resources.Strings.AppResources.SettingsNoImageSelected;
+            btnDeleteBgImage.IsEnabled = false;
+        }
+        else
+        {
+            lblBgImagePath.Text = Path.GetFileName(_tempBgImagePath);
+            btnDeleteBgImage.IsEnabled = true;
+        }
+    }
+
+    private async void OnSelectBgImageClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            var options = new PickOptions
+            {
+                PickerTitle = "Choisir une image de fond",
+                FileTypes = FilePickerFileType.Images
+            };
+            var result = await FilePicker.Default.PickAsync(options);
+            if (result != null)
+            {
+                string targetDir = FileSystem.Current.AppDataDirectory;
+                string fileExt = Path.GetExtension(result.FileName);
+                string targetPath = Path.Combine(targetDir, $"bg_image_{DateTime.Now.Ticks}{fileExt}");
+
+                using (var sourceStream = await result.OpenReadAsync())
+                using (var targetStream = File.OpenWrite(targetPath))
+                {
+                    await sourceStream.CopyToAsync(targetStream);
+                }
+
+                if (!string.IsNullOrWhiteSpace(_tempBgImagePath) && File.Exists(_tempBgImagePath))
+                {
+                    try { File.Delete(_tempBgImagePath); } catch { }
+                }
+
+                _tempBgImagePath = targetPath;
+                UpdateBgImageLabelAndButtons();
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Erreur", $"Impossible de s\u00E9lectionner l'image : {ex.Message}", "OK");
+        }
+    }
+
+    private void OnDeleteBgImageClicked(object sender, EventArgs e)
+    {
+        if (!string.IsNullOrWhiteSpace(_tempBgImagePath) && File.Exists(_tempBgImagePath))
+        {
+            try { File.Delete(_tempBgImagePath); } catch { }
+        }
+        _tempBgImagePath = "";
+        UpdateBgImageLabelAndButtons();
+    }
+
     private async void OnCancelClicked(object sender, EventArgs e)
     {
         await Navigation.PopAsync();
@@ -277,6 +343,7 @@ public partial class SettingsPage : ContentPage
 
         Preferences.Default.Set("use_default_gallery", switchUseDefaultGallery.IsToggled);
         Preferences.Default.Set("custom_gallery_path", _tempCustomFolderPath);
+        Preferences.Default.Set("background_image_path", _tempBgImagePath);
 
         await Navigation.PopAsync();
     }

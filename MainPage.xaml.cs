@@ -46,11 +46,22 @@ public partial class MainPage : ContentPage
             });
         });
     }
-
     protected override void OnAppearing()
     {
         base.OnAppearing();
         _isVisible = true;
+
+        string bgPath = Microsoft.Maui.Storage.Preferences.Default.Get("background_image_path", "");
+        if (!string.IsNullOrWhiteSpace(bgPath) && System.IO.File.Exists(bgPath))
+        {
+            imgBackground.Source = ImageSource.FromFile(bgPath);
+            imgBackground.IsVisible = true;
+        }
+        else
+        {
+            imgBackground.Source = null;
+            imgBackground.IsVisible = false;
+        }
 
         
         lblLine1.Text = Microsoft.Maui.Storage.Preferences.Default.Get("title_line1_text", "Noces d'Argent \U0001F4F8");

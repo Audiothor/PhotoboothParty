@@ -63,5 +63,10 @@ namespace PhotoboothParty.Resources.Strings
         public static string SettingsLine1SizeLabel => ResourceManager.GetString("SettingsLine1SizeLabel", resourceCulture);
         public static string SettingsLine2SizeLabel => ResourceManager.GetString("SettingsLine2SizeLabel", resourceCulture);
         public static string SettingsLine3SizeLabel => ResourceManager.GetString("SettingsLine3SizeLabel", resourceCulture);
+        public static string SettingsBackgroundImage => ResourceManager.GetString("SettingsBackgroundImage", resourceCulture);
+        public static string SettingsBackgroundImageDesc => ResourceManager.GetString("SettingsBackgroundImageDesc", resourceCulture);
+        public static string SettingsSelectImage => ResourceManager.GetString("SettingsSelectImage", resourceCulture);
+        public static string SettingsDeleteImage => ResourceManager.GetString("SettingsDeleteImage", resourceCulture);
+        public static string SettingsNoImageSelected => ResourceManager.GetString("SettingsNoImageSelected", resourceCulture);
     }
 }

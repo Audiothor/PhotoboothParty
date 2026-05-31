@@ -9,6 +9,7 @@
     </ContentPage.ToolbarItems>
 
     <Grid>
+        <Image x:Name="imgBackground" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="False" />
         <Grid HorizontalOptions="Center" RowDefinitions="Auto, Auto, Auto" VerticalOptions="Center" Margin="0,-120,0,0">
             <Label x:Name="lblLine1" FontAttributes="Bold" Grid.Row="0" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
             <Label x:Name="lblLine2" Grid.Row="1" HorizontalOptions="Center" Margin="0,20,0,0" Opacity="0.8" HorizontalTextAlignment="Center" />

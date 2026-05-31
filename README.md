@@ -1,6 +1,6 @@
 # 📸 PhotoboothParty
 
-### 🏷️ Version actuelle : **v1.3.0** (Stable) | Current Version: **v1.3.0**
+### 🏷️ Version actuelle : **v1.3.1** (Stable) | Current Version: **v1.3.1**
 
 [Version Française](#version-française) | [English Version](#english-version)
 
