@@ -200,10 +200,10 @@ public partial class CapturePage : ContentPage
             gridCamera.IsVisible = false;
             gridPreview.IsVisible = true;
             
-            // Fait disparaÃ®tre le flash en douceur (fade out)
+            // Fait disparaÃ®tre le flash trÃ¨s rapidement (fade out)
             if (playFlash)
             {
-                flashOverlay.FadeTo(0, 500, Easing.CubicOut);
+                flashOverlay.FadeTo(0, 150, Easing.CubicOut);
             }
 
             await RunPreviewPersistenceTimer();
@@ -229,7 +229,16 @@ public partial class CapturePage : ContentPage
 
         if (_isInPreviewMode)
         {
-            await Navigation.PopAsync();
+            // Au lieu de retourner au menu, on revient Ã  l'appareil photo !
+            _isInPreviewMode = false;
+            gridPreview.IsVisible = false;
+            gridCamera.IsVisible = true;
+            
+            // Relancer le chronomÃ¨tre d'inactivitÃ© (s'ils ne font rien, retour Ã  l'accueil)
+            StartInactivityCountdown();
+            
+            await Task.Delay(100);
+            await SetupFrontCameraAsync();
         }
     }
 
