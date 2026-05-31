@@ -23,15 +23,15 @@
 L'application est conçue pour être installée très facilement sur vos appareils de fête, en particulier sur **tablette Android** (le support idéal).
 
 #### 📱 Sur Android (Tablette / Téléphone) - *Recommandé*
-1. **Télécharger l'application** : Sur votre appareil Android, ouvrez votre navigateur web et rendez-vous sur la page GitHub du projet, dans la section **Releases** (Versions). Téléchargez le fichier se terminant par `.apk`.
+1. **Obtenir le fichier de l'application** : Copiez le fichier d'installation de l'application se terminant par `.apk` (généré lors de la compilation par le créateur ou fourni par l'organisateur) sur une clé USB ou envoyez-le par email/Google Drive sur votre tablette Android.
 2. **Autoriser l'installation** : 
-   - Lors de l'ouverture du fichier téléchargé, Android peut vous indiquer que l'installation d'applications issues de sources inconnues est bloquée par sécurité.
-   - Cliquez sur **Paramètres** dans la boîte de dialogue qui s'affiche, puis cochez l'autorisation pour votre navigateur (Chrome/Samsung Internet) ou gestionnaire de fichiers afin de "Fichiers de sources inconnues" ou "Installer des applications inconnues".
-3. **Installer** : Retournez sur votre fichier téléchargé et cliquez sur **Installer**. Une fois installé, l'icône **PhotoboothParty** apparaîtra sur votre écran d'accueil.
+   - Ouvrez le fichier `.apk` sur votre appareil Android. Le système peut vous indiquer que l'installation d'applications issues de sources inconnues est bloquée par sécurité.
+   - Cliquez sur **Paramètres** dans la boîte de dialogue qui s'affiche, puis cochez l'autorisation pour votre navigateur (Chrome) ou votre gestionnaire de fichiers afin de lui permettre d'**Installer des applications inconnues** (ou "sources inconnues").
+3. **Installer** : Retournez sur le fichier `.apk` et cliquez sur **Installer**. Une fois l'opération terminée, l'icône **PhotoboothParty** apparaîtra sur votre écran d'accueil.
 
 #### 💻 Sur Windows (PC / Tablette Windows)
-1. Téléchargez le paquet d'installation pour Windows (fichier `.msix` ou dossier zip d'installation) depuis la section **Releases**.
-2. Double-cliquez sur le fichier `.msix` et cliquez sur **Installer**.
+1. Double-cliquez sur le fichier d'installation Windows se terminant par `.msix` (fourni par l'administrateur ou le développeur).
+2. Cliquez sur le bouton **Installer** dans la boîte de dialogue qui apparaît.
 
 ---
 
@@ -54,12 +54,12 @@ L'application est conçue pour être installée très facilement sur vos apparei
 The application is highly optimized for **Android tablets** (the ideal physical setup for a photo booth).
 
 #### 📱 On Android (Tablets / Phones) - *Recommended*
-1. **Download the App**: On your Android device, open the browser and navigate to the GitHub project's **Releases** section. Download the file ending with `.apk`.
+1. **Get the Application File**: Copy the installation file ending with `.apk` (compiled by the developer or provided by the event organizer) onto a USB flash drive, or send it to your Android tablet via email or Google Drive.
 2. **Enable Installation from Unknown Sources**:
-   - When opening the downloaded file, Android might show a security prompt warning you about unknown apps.
-   - Click **Settings** in the prompt, and enable "Allow from this source" for your browser (Chrome/Samsung Internet) or file manager.
-3. **Install**: Return to the downloaded file, click **Install**, and once completed, tap the **PhotoboothParty** icon on your home screen to launch.
+   - Open the `.apk` file on your Android device. A security prompt might appear, warning you that installing unknown apps is blocked.
+   - Click **Settings** in that prompt, and enable **Allow from this source** (or "Install unknown apps") for your file manager or browser.
+3. **Install**: Return to the `.apk` file, click **Install**, and once completed, tap the **PhotoboothParty** icon on your home screen to launch.
 
 #### 💻 On Windows (PC / Windows Tablet)
-1. Download the Windows installer package (the `.msix` file or package zip) from the **Releases** section.
-2. Double-click the `.msix` installer and select **Install**.
+1. Double-click the Windows installation file ending with `.msix` (provided by the developer or administrator).
+2. Click the **Install** button in the setup dialog that appears.
