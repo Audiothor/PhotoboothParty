@@ -25,7 +25,7 @@
 L'application est conçue pour être installée très facilement sur vos appareils de fête, en particulier sur **tablette Android** (le support idéal).
 
 #### 📱 Sur Android (Tablette / Téléphone) - *Recommandé*
-1. **Télécharger l'application** : Sur votre appareil Android, ouvrez votre navigateur web et rendez-vous sur la page des [Releases (Versions) du projet sur GitHub](https://github.com/Audiothor/PhotoboothParty/releases). Téléchargez le fichier se terminant par `.apk` (généralement `com.companyname.PhotoboothParty-Signed.apk`).
+1. **Télécharger l'application** : Sur votre appareil Android, ouvrez votre navigateur web et rendez-vous sur la page des [Releases (Versions) du projet sur GitHub](https://github.com/Audiothor/PhotoboothParty/releases). Téléchargez le fichier se terminant par `.apk` (généralement `com.audiothor.PhotoboothParty-Signed.apk`).
 2. **Autoriser l'installation** : 
    - Lors de l'ouverture du fichier `.apk` téléchargé, Android peut vous indiquer que l'installation d'applications issues de sources inconnues est bloquée par sécurité.
    - Cliquez sur **Paramètres** dans la boîte de dialogue qui s'affiche, puis cochez l'autorisation pour votre navigateur (Chrome) ou gestionnaire de fichiers afin de lui permettre d'**Installer des applications inconnues** (ou "sources inconnues").
@@ -56,7 +56,7 @@ L'application est conçue pour être installée très facilement sur vos apparei
 The application is highly optimized for **Android tablets** (the ideal physical setup for a photo booth).
 
 #### 📱 On Android (Tablets / Phones) - *Recommended*
-1. **Download the App**: On your Android device, open the browser and navigate to the [GitHub Releases page](https://github.com/Audiothor/PhotoboothParty/releases). Download the file ending with `.apk` (typically `com.companyname.PhotoboothParty-Signed.apk`).
+1. **Download the App**: On your Android device, open the browser and navigate to the [GitHub Releases page](https://github.com/Audiothor/PhotoboothParty/releases). Download the file ending with `.apk` (typically `com.audiothor.PhotoboothParty-Signed.apk`).
 2. **Enable Installation from Unknown Sources**:
    - Open the downloaded `.apk` file. A security prompt might appear, warning you that installing unknown apps is blocked.
    - Click **Settings** in that prompt, and enable **Allow from this source** (or "Install unknown apps") for your file manager or browser.

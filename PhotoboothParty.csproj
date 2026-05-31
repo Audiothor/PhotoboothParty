@@ -15,7 +15,7 @@
 		<ApplicationTitle>PhotoboothParty</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.PhotoboothParty</ApplicationId>
+		<ApplicationId>com.audiothor.PhotoboothParty</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.3</ApplicationDisplayVersion>
