@@ -14,7 +14,7 @@
             <Label x:Name="lblLine3" Grid.Row="2" HorizontalOptions="Center" Margin="0,15,0,0" Opacity="0.8" HorizontalTextAlignment="Center" />
         </Grid>
         
-        <!-- Bouton Paramètres flottant à l'extrême bord en haut à droite -->
+        <!-- Bouton Paramètres flottant à l'extrême bord en haut à droite (taille originale) -->
         <ImageButton Source="settings_gear.png" 
                      Clicked="OnSettingsClicked" 
                      HorizontalOptions="End" 
@@ -23,7 +23,7 @@
                      WidthRequest="44" 
                      HeightRequest="44" 
                      BackgroundColor="Transparent"
-                     Padding="0" />
+                     Padding="8" />
         
         <!-- Version au tout bas de l'ecran avec une marge securitaire pour la barre de navigation Android -->
         <Label x:Name="lblVersion" HorizontalOptions="Center" VerticalOptions="End" Margin="0,0,0,40" TextColor="Gray" FontSize="14" Opacity="0.5" />
